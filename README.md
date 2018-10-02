@@ -45,4 +45,4 @@ Along with http-error routes to respond back to the client.
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
 #### Version
-* 1.0.3
+* 1.0.4
