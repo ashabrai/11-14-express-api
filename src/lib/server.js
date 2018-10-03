@@ -7,13 +7,14 @@ const loggerMiddleware = require('../lib/logger-middleware');
 const errorMiddleware = require('../lib/error-middleware');
 
 const seattleBarRouter = require('../routes/seattle-bars-router');
+const barMenuRoutes = require('../routes/barMenu-router');
 
 const app = express();
 //-------------------------------------------------
 
-// app.use(cors());
 app.use(loggerMiddleware);
 
+app.use(barMenuRoutes);
 app.use(seattleBarRouter);
 
 app.all('*', (request, response) => {

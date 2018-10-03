@@ -19,7 +19,7 @@ describe('/api/seattlebar', () => {
   afterEach(seattleBarMock.pCleanSeattleBarMock);
 
   // POST------------------------- Success Test ----------
-  test('should respond with 200 status code and a new json note', () => {
+  test('should respond with 200 status code and a new json bar', () => {
     const originalRequest = {
       title: faker.lorem.words(2),
       content: faker.lorem.words(1),
@@ -32,7 +32,6 @@ describe('/api/seattlebar', () => {
         expect(response.body.content).toEqual(originalRequest.content);
         expect(response.body.title).toEqual(originalRequest.title);
         expect(response.body._id.toString()).toBeTruthy();
-        expect(response.body.timestamp).toBeTruthy();
       });
   });
   // POST ------------------ fail, no content---------------------//
@@ -106,29 +105,28 @@ describe('/api/seattlebar', () => {
       });
   });
 });
-//   // put--------------------success on update on title and content ---------
-//
+// put--------------------success on update on title and content ---------
+
 //   test('should 200 respond with an updated title and content were updated', () => {
-//     let savedSeattleBarMock = null;
-//     return seattleBarMock.pCreateSeattleBarMock()
-//       .then((createSeattleBarMock) => {
-//         savedSeattleBarMock = createSeattleBarMock;
-//         const newPut = {
-//           title: faker.lorem.words(1),
-//           content: faker.lorem.words(1),
-//         };
-//         return superagent.put(`${API_URL}/${createSeattleBarMock._id}`)
-//           .send(newPut)
-//           .then((putResponse) => {
+//     let savedSeattleBarMock;
+//     return seattleBarMock.pCreateBarMenuPostMock()
+//       .then((mock) => {
+//         savedSeattleBarMock = mock;
+//         return superagent.put(`${API_URL}/${mock.barMenu._id}`)
+//           .send({
+//             name: 'I am a new bar drink name',
+//           })
+//           .then((response) => {
 //             expect(putResponse.status).toEqual(200);
 //             expect(putResponse.body._id).toEqual(savedSeattleBarMock.id);
 //             expect(putResponse.body.content).toEqual(newPut.content);
 //
-//            expect(putResponse.body.title).toEqual(newPut.title);
+//             expect(putResponse.body.name).toEqual(newPut.title);
 //           });
 //       });
 //   });
-//   // PUT---------------fail no id match -----------------
+// });
+// PUT---------------fail no id match -----------------
 //   test('should respond with 404, if there is not a matching id to update', () => {
 //     return superagent.put(`${API_URL}/09019384`)
 //       .then(Promise.reject)

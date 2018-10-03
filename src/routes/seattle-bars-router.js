@@ -17,9 +17,9 @@ router.post('/api/seattlebar', jsonParser, (request, response, next) => {
   return new SeattleBar(request.body).save()
     .then((savedSeattleBar) => {
       logger.log(logger.INFO, 'Responding with 200 status');
-      return response.json(savedSeattleBar);
+      response.json(savedSeattleBar);
     })
-    .catch(next);
+    .catch(error => next(error));
 });
 
 router.get('/api/seattlebar/:id', (request, response, next) => {
@@ -47,7 +47,7 @@ router.delete('/api/seattlebar/:id', (request, response, next) => {
     })
     .catch(next);
 });
-
+//
 // router.put('/api/seattlebar/:id', jsonParser, (request, response, next) => {
 //   return SeattleBar.findById(request.params.id)
 //     .then((seattleBar) => {

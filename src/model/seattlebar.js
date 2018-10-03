@@ -2,7 +2,8 @@
 
 const mongoose = require('mongoose');
 
-const barSchema = mongoose.Schema({
+
+const seattleBarSchema = mongoose.Schema({
   timestamp: {
     type: Date,
     default: () => new Date(),
@@ -16,7 +17,15 @@ const barSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  barMenu:
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'barMenu',
+    },
+},
+{
+  usePushEach: true,
 });
 
-
-module.exports = mongoose.model('seattleBar', barSchema);
+module.exports = mongoose.model('seattleBar', seattleBarSchema);
